@@ -3,7 +3,7 @@
 using namespace std;
 int t_num, n_plate,discount;
 float cost;
-int momo=100,noole=50,pizza=150,burg=120;//price of each iteam per plate
+int momo=100,noole=50,pizz=150,burg=120;//price of each iteam per plate
 
 class menu{
     public:
@@ -29,6 +29,53 @@ void menu::momoo(){
 
 
 }
+
+void menu::noodles(){
+    cout<<"enter how many plate do you want to order"<<endl;
+    cin>>n_plate;
+    cost=noole*n_plate;
+     if(n_plate>=10){
+        discount=(cost*5)/100;
+        cost-=discount;
+        cout<<"Your bill amount is \t"<<cost<<endl;
+    }
+    else{
+         cout<<"Your bill amount is \t"<<cost<<endl;
+    }
+
+}
+
+void menu::pizza(){
+     cout<<"enter how many plate do you want to order"<<endl;
+    cin>>n_plate;
+    cost=pizz*n_plate;
+     if(n_plate>=8){
+        discount=(cost*5)/100;
+        cost-=discount;
+        cout<<"Your bill amount is \t"<<cost<<endl;
+    }
+    else{
+         cout<<"Your bill amount is \t"<<cost<<endl;
+    }
+
+}
+
+void menu::burger(){
+    cout<<"how many do you want to order burger"<<endl;
+    cin>>n_plate;
+    cost=burg*n_plate;
+     if(n_plate>=6){
+        discount=(cost*5)/100;
+        cost-=discount;
+        cout<<"Your bill amount is \t"<<cost<<endl;
+    }
+    else{
+         cout<<"Your bill amount is \t"<<cost<<endl;
+    }
+
+
+}
+
 int main(){
     menu m;
     int choice;
@@ -47,12 +94,15 @@ int main(){
         break;
 
         case 2:
+        m.noodles();
         break;
 
         case 3:
+        m.pizza();
         break;
 
         case 4:
+        m.burger();
         break;
 
         case 5:
