@@ -1,7 +1,10 @@
 //program to show about calculator
 #include<iostream>
 #include<math.h>
+#include<vector>
+#include<string>
 using namespace std;
+vector<string>history;
 
 bool intput_valid(){
      if(cin.fail()){
@@ -21,6 +24,8 @@ void add(){
    return;
     c=a+b;
     cout<<"sum="<<c<<endl;
+    history.push_back(to_string(a)+"+"+ to_string(b)+"="+ to_string(c));
+
 }
 
 void sub(){
@@ -31,6 +36,7 @@ void sub(){
    return;
     z=x-y;
     cout<<"subtraction="<<z<<endl;
+    history.push_back(to_string(x)+"-"+ to_string(y)+"="+ to_string(z));
 }
 
 void mul(){
@@ -41,6 +47,7 @@ void mul(){
    return;
     h=f*g;
     cout<<"multiplication="<<h<<endl;
+    history.push_back(to_string(g)+"*"+to_string(f)+"="+to_string(h));
 }
 
 void divid(){
@@ -56,6 +63,7 @@ void divid(){
     else{
     m=d/n;
     cout<<"division="<<m<<endl;
+    history.push_back(to_string(d)+"/"+to_string(n)+"="+to_string(m));
     }
 
 }
@@ -72,6 +80,8 @@ void mod(){
     else{
     v=a%b;
     cout<<"modulus="<<v<<endl;
+    
+    history.push_back(to_string(a)+"%"+to_string(b)+"="+to_string(v));
     }
 }
 
@@ -83,6 +93,7 @@ void squ(){
    return;
      s=pow(n,2);
      cout<<"square="<<s<<endl;
+     history.push_back(to_string(n)+"^2="+to_string(s));
 
 }
 
@@ -94,6 +105,7 @@ void cub(){
    return;
      s=pow(n,3);
      cout<<"cube="<<s<<endl;
+     history.push_back(to_string(n)+"^3="+to_string(s));
 
 }
 
@@ -105,6 +117,7 @@ void power(){
    return;
     d=pow(a,p);
     cout<<"power="<<d<<endl;
+    history.push_back(to_string(a)+"^"+to_string(p)+"="+to_string(d));
 }
 
 void sqa(){
@@ -119,6 +132,7 @@ void sqa(){
     else{
     j=sqrt(v);
     cout<<"square root="<<j<<endl;
+ history.push_back("sqrt("+to_string(v)+")="+to_string(j));
     }
     
 }
@@ -140,12 +154,26 @@ void fact(){
         f=f*i;
     }
     cout<<"factorial="<<f<<endl;
+    history.push_back(to_string(n)+"!="+to_string(f));
 }
+}
+
+
+void show_history(){
+    if(history.empty()){
+        cout<<"history is not aviable"<<endl;
+        return;
+    }
+    cout<<"....history...."<<endl;
+    for(size_t i=0;i<history.size();i++){
+        cout<<i+1<<":"<<history[i]<<endl;
+    }
 }
 int main(){
     int choice;
+    bool running=true;
     cout<<"------Calculator------"<<endl;
-    while(1){
+    while(running){
     cout<<"1: addition"<<endl;
     cout<<"2: subtraction"<<endl;
     cout<<"3: multiplication"<<endl;
@@ -156,7 +184,9 @@ int main(){
     cout<<"8: power"<<endl;
     cout<<"9 :square root"<<endl;
     cout<<"10: factorial"<<endl;
-    cout<<"11: Exit"<<endl;
+    cout<<"11: show history"<<endl;
+    cout<<"12: delete history"<<endl;
+    cout<<"13: Exit"<<endl;
     cout<<"enter your choice"<<endl;
     cin>>choice;
     if(cin.fail()){
@@ -208,7 +238,16 @@ int main(){
         break;
 
         case 11:
-        exit(0);
+        show_history();
+        break;
+
+        case 12:
+        history.clear();
+        cout<<"history is deleted"<<endl;
+        break;
+
+        case 13:
+        running=false;
         break;
 
 
@@ -218,4 +257,6 @@ int main(){
         break;
     }
     }
+    cout<<"calculator is closed"<<endl;
+    return 0;
 }
